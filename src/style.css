@@ -1,8 +1,14 @@
 * {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 900px) {
+    * {
+        font-size: 4vw;
+    }
 }
 
 body, textarea {
@@ -11,21 +17,18 @@ body, textarea {
 }
 
 body {
-    padding: 0.5rem;
+    padding: 0.2em;
 }
 
-.input {
-    width: 100%;
-    /* font-size: 3em; */
-    text-align: right;
-    padding: 0.5rem 1rem;
+.history {
+    margin-bottom: 4em;
 }
 
 .histoty-item {
-    padding-inline: 1rem;
+    padding-inline: 0.5em;
     /* display: flex; */
     display: grid;
-    grid-template-columns: auto 7em;
+    grid-template-columns: auto 1em 9.5em;
     /* background-color: aqua; */
     /* text-align: right; */
 }
@@ -38,7 +41,7 @@ body {
     /* display: inline-block; */
     /* width: calc(100% - 9em); */
     text-align: right;
-    padding-right: 1rem;
+    padding-right: 0.5em;
 }
 
 .result {
@@ -46,7 +49,23 @@ body {
     /* width: 7em; */
     text-align: left;
     margin-top: auto;
+    cursor: pointer;
 }
+
+.result:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+/* .result::before {
+    content: '= ';
+    text-decoration: none;
+} */
+/* 
+.result:hover::before {
+    content: '= ';
+    text-decoration: none;
+} */
 
 .histoty-item.selected {
     background-color: aquamarine;
@@ -54,13 +73,23 @@ body {
 
 .the-calc {
     position: fixed;
-    bottom: 0.5rem;
-    width: calc(100% - 1rem);
+    bottom: 0;
+    width: calc(100% - 0.5em);
+    background-color: white;
+    padding-bottom: 0.5em;
+}
+
+.input {
+    width: 100%;
+    /* font-size: 3em; */
+    text-align: right;
+    padding: 0.2em 0.5em;
 }
 
 #result {
     /* font-size: 3em; */
     text-align: right;
-    padding-inline: 1rem;
+    padding-inline: 0.5em;
     height: 1em;
+    cursor: pointer;
 }
