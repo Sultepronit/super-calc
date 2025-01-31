@@ -8,7 +8,7 @@ function updateOutput(value) {
     saveHistory();
 }
 
-export default function addKeybardHandlers() {
+export default function addActionHandlers() {
     document.body.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') {
             updateHistoryView();
@@ -26,12 +26,26 @@ export default function addKeybardHandlers() {
     });
 
     input.addEventListener('input', () => {
-        const improvedValue = input.value.replace('\n', '');
-        if (input.value !== improvedValue) setInputValue(improvedValue);
+        let improvedValue = input.value.replace('\n', '');
+        improvedValue = improvedValue.replace(/\s*([\+\-\*\/])\s*/g, ' $1 ');
+        improvedValue = improvedValue.replaceAll('e + ', 'e+');
+        improvedValue = improvedValue.replaceAll('e - ', 'e-');
 
-        setCurrentEntryExpression(input.value);
+        
+        let viewValue = improvedValue.replaceAll('*', '×');
+        viewValue = viewValue.replaceAll('/', '÷');
+        viewValue = viewValue.replaceAll('-', '–');
+        
+        let calcValue = improvedValue.replaceAll('×', '*');
+        calcValue = calcValue.replaceAll('÷', '/');
+        calcValue = calcValue.replaceAll('–', '-');
+        console.log(calcValue);
+        
+        if (input.value !== viewValue) setInputValue(viewValue);
+
+        setCurrentEntryExpression(viewValue);
             
-        const result = calculate(input.value);
+        const result = calculate(calcValue, outputFormat.value);
         updateOutput(result);
     });
 

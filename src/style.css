@@ -1,15 +1,23 @@
 * {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
     * {
-        font-size: 4vw;
+        font-size: 5.5vw;
     }
 }
+
+/* @media screen and (max-width: 1200px) {
+    .history-item {
+        padding-inline: 0.5em;
+        display: grid;
+        color: red;
+    }
+} */
 
 body, textarea {
     /* font-family: 'Courier New', Courier, monospace; */
@@ -24,50 +32,49 @@ body {
     margin-bottom: 4em;
 }
 
-.histoty-item {
+.history-item {
+    /* margin-bottom: 0.3em; */
+    padding-bottom: 0.3em;
     padding-inline: 0.5em;
-    /* display: flex; */
     display: grid;
-    grid-template-columns: auto 1em 9.5em;
-    /* background-color: aqua; */
-    /* text-align: right; */
+    /* grid-template-columns: auto 1em 9.5em; */
+    grid-template-columns: auto 1em;
 }
 
-.histoty-item:nth-child(even) {
+.history-item:nth-child(even) {
     background-color: aliceblue;
 }
 
 .expression {
+    color: blue;
     /* display: inline-block; */
     /* width: calc(100% - 9em); */
     text-align: right;
-    padding-right: 0.5em;
+    /* padding-right: 2em; */
 }
 
 .result {
     /* display: block; */
     /* width: 7em; */
-    text-align: left;
+    /* text-align: left; */
+    text-align: right;
     margin-top: auto;
     cursor: pointer;
+    grid-column: span 2;
+    height: 1em;
 }
 
-.result:hover {
+.equals {
+    color: blue;
+    margin-inline: 0.5em;
+}
+
+.result span:hover {
     text-decoration: underline;
     text-decoration-thickness: 2px;
 }
 
-/* .result::before {
-    content: '= ';
-    text-decoration: none;
-} */
-/* 
-.result:hover::before {
-    content: '= ';
-    text-decoration: none;
-} */
-
-.histoty-item.selected {
+.history-item.selected {
     background-color: aquamarine;
 }
 
@@ -82,6 +89,7 @@ body {
 .input {
     width: 100%;
     /* font-size: 3em; */
+    /* font-style: italic; */
     text-align: right;
     padding: 0.2em 0.5em;
 }
@@ -92,4 +100,17 @@ body {
     padding-inline: 0.5em;
     height: 1em;
     cursor: pointer;
+}
+
+@media screen and (min-width: 1200px) {
+    .history-item {
+        /* padding-inline: 0.5em; */
+        display: grid;
+        grid-template-columns: auto 1.5em 9.5em;
+    }
+
+    .result {
+        text-align: left;
+        grid-column: span 1;
+    }
 }
