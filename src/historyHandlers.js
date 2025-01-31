@@ -3,9 +3,7 @@ import { doesInputIsEmpty, outputFormat, setInputValue, setOutputValue } from ".
 const historyDisplay = document.getElementById('history');
 
 document.selectEntry = (e, index) => {
-    console.log(e, index);
     if (e.target.classList.contains('clickable-result')) return;
-    console.log(e.srcElement, e.target.classList[0]);
     navigateHistory(0, index);
 }
 
@@ -18,7 +16,6 @@ export function saveHistory() {
 
 function prepareHistoryItemContent(index) {
     return `<p class="expression">${history[index].expression}</p>
-        <p class="equals">=</p>
         <p class="result">
             <span class="clickable-result" onclick="insertValue('${history[index].result}')">
                 ${history[index].result}

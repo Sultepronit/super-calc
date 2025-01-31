@@ -27,15 +27,23 @@ export default function addActionHandlers() {
 
     input.addEventListener('input', () => {
         let improvedValue = input.value.replace('\n', '');
-        improvedValue = improvedValue.replace(/\s*([\+\-\*\/])\s*/g, ' $1 ');
-        improvedValue = improvedValue.replaceAll('e + ', 'e+');
-        improvedValue = improvedValue.replaceAll('e - ', 'e-');
-
+        // improvedValue = improvedValue.replace(/\s*([\+\-\*\/])\s*/g, ' $1 ');
+        // improvedValue = improvedValue.replaceAll('e + ', 'e+');
+        // improvedValue = improvedValue.replaceAll('e - ', 'e-');
+        // improvedValue = improvedValue.replaceAll('– – ', '- -');
+        // improvedValue = improvedValue.replaceAll('+ – ', '+ -');
+        // improvedValue = improvedValue.replaceAll('÷ – ', '/ -');
+        // improvedValue = improvedValue.replaceAll('× – ', '* -');
+        // improvedValue = improvedValue.replaceAll('( - ', '(-');
+        // if (improvedValue.substring(0, 3) === ' – ') {
+        //     improvedValue = improvedValue.replace(' – ', '-');
+        // }
+        // console.log(improvedValue);
         
         let viewValue = improvedValue.replaceAll('*', '×');
         viewValue = viewValue.replaceAll('/', '÷');
         viewValue = viewValue.replaceAll('-', '–');
-        
+
         let calcValue = improvedValue.replaceAll('×', '*');
         calcValue = calcValue.replaceAll('÷', '/');
         calcValue = calcValue.replaceAll('–', '-');
