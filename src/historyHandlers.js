@@ -1,4 +1,4 @@
-import { doesInputIsEmpty, outputFormat, setInputValue, setOutputValue } from "./inputOutputHandlers";
+import { doesInputIsEmpty, setInputValue, setOutputValue } from "./inputOutputHandlers";
 
 const historyDisplay = document.getElementById('history');
 
@@ -59,8 +59,6 @@ scrollDown();
 
 export function updateHistoryView() {
     if (doesInputIsEmpty()) return;
-
-    outputFormat.value = '';
 
     if (current + 1 === history.length) { // if adding new record
         setInputValue('');

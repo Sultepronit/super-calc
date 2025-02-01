@@ -1,6 +1,3 @@
-// import { handleInput } from "./calcHandlers";
-// import { getCurrentEntry } from "./historyHandlers";
-
 export const input = document.getElementById('input');
 export const output = document.getElementById('output');
 
@@ -11,16 +8,6 @@ document.insertValue = (value) => {
     input.value += value.replaceAll(',', '');
     input.dispatchEvent(new Event('input'));
     input.focus();
-};
-
-export const outputFormat = {
-    _value: '',
-    get value() {
-        return this._value;
-    },
-    set value(newVal) {
-        this._value = newVal;
-    }
 };
 
 export function focusInput() {
