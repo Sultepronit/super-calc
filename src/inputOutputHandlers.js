@@ -1,6 +1,8 @@
 export const input = document.getElementById('input');
 export const output = document.getElementById('output');
 
+input.inputMode = "none";
+
 document.insertValue = (value) => {
     if (!value) return;
     console.log(value);

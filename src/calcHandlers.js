@@ -24,13 +24,3 @@ export function calculate(expression) {
         return '';
     }
 }
-
-// export function handleInput(expression) {
-//     setCurrentEntryExpression(expression);
-
-//     const result = calculate(expression);
-//     setCurrentEntryResult(result);
-//     setOutputValue(result);
-
-//     saveHistory();
-// }

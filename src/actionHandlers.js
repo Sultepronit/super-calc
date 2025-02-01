@@ -33,12 +33,17 @@ export default function addActionHandlers() {
         let viewValue = improvedValue
             .replaceAll('*', '×')
             .replaceAll('/', '÷')
-            .replaceAll('-', '–');
+            .replaceAll('-', '–')
+            .replaceAll('pi', 'π')
+            .replaceAll('^2', '²');
+            
 
         let calcValue = improvedValue
             .replaceAll('×', '*')
             .replaceAll('÷', '/')
-            .replaceAll('–', '-');
+            .replaceAll('–', '-')
+            .replaceAll('π', 'pi')
+            .replaceAll('²', '^2');
         console.log(calcValue);
         
         if (input.value !== viewValue) setInputValue(viewValue);
