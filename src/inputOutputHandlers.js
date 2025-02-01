@@ -7,7 +7,11 @@ document.insertValue = (value) => {
     if (!value) return;
     console.log(value);
 
-    input.value += value.replaceAll(',', '');
+    if (value === '⌫') {
+        input.value = input.value.substring(0, input.value.length - 1);
+    } else {
+        input.value += value.replaceAll(',', '');
+    }
     input.dispatchEvent(new Event('input'));
     input.focus();
 };

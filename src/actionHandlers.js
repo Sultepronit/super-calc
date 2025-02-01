@@ -35,15 +35,16 @@ export default function addActionHandlers() {
             .replaceAll('/', '÷')
             .replaceAll('-', '–')
             .replaceAll('pi', 'π')
-            .replaceAll('^2', '²');
-            
+            .replaceAll('^2', '²')
+            .replaceAll('sqrt', '√');            
 
         let calcValue = improvedValue
             .replaceAll('×', '*')
             .replaceAll('÷', '/')
             .replaceAll('–', '-')
             .replaceAll('π', 'pi')
-            .replaceAll('²', '^2');
+            .replaceAll('²', '^2')
+            .replaceAll('√', 'sqrt');
         console.log(calcValue);
         
         if (input.value !== viewValue) setInputValue(viewValue);
