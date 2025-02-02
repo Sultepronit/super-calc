@@ -46,7 +46,7 @@ function isTouchscreen() {
 }
 
 export function addTouchKeys() {
-    if (!isTouchscreen()) return;
+    // if (!isTouchscreen()) return;
 
     document.getElementById('keys-1').innerHTML = keys1.map(key => {
         return key.action ? `<p onclick="${key.action}">${key.key}</p>`

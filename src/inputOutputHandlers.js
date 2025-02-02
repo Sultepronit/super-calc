@@ -5,13 +5,24 @@ document.insertValue = (value) => {
     if (!value) return;
     console.log(value);
 
+    value = value.replaceAll(',', '');
+
+    let start = input.selectionStart;
+    const end = input.selectionEnd;
+
     if (value === '⌫') {
-        input.value = input.value.substring(0, input.value.length - 1);
-    } else {
-        input.value += value.replaceAll(',', '');
+        value = '';
+        start = start === end ? (start - 1 >= 0 ? start - 1 : 0) : start;
     }
-    input.dispatchEvent(new Event('input'));
+
+    console.log(start, end, value);
+    console.log(start + value.length)
+
+    input.value = input.value.slice(0, start) + value + input.value.slice(end);
+    input.selectionStart = input.selectionEnd = start + value.length;
     input.focus();
+
+    input.dispatchEvent(new Event('input'));
 };
 
 export function focusInput() {
