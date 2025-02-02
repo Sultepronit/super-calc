@@ -17,10 +17,15 @@ body, textarea {
 
 body {
     /* padding: 0.2em; */
+    /* height: 100dvh; */
+    height: 100svh;
+    display: grid;
+    grid-template-rows: 1fr auto auto;
 }
 
 .history {
-    margin-bottom: 4.5em;
+    /* margin-bottom: 4.5em; */
+    overflow: auto;
 }
 
 .history-item {
@@ -65,8 +70,8 @@ body {
 }
 
 .the-calc {
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
     /* width: calc(100% - 0.5em); */
     width: 100%;
     background-color: white;
@@ -93,16 +98,23 @@ body {
 .keys {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    
+    /* margin: 2px; */
+    margin-inline: 4px;
 }
 
 .keys p {
     /* border: 1px solid; */
     margin: 2px;
-    padding-block: 0.2em;
+    /* padding-block: 0.2em; */
+    padding: 0.3em 0 0.2em;
     background-color: aliceblue;
     text-align: center;
     font-size: 1.3rem;
+    /* font-weight: bold; */
+}
+
+.hidden {
+    display: none;
 }
 
 @media screen and (min-width: 1200px) {

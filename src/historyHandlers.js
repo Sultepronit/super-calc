@@ -30,10 +30,21 @@ function displayHistoryItem(index) {
     </li>`;
 }
 
+function scrollDown() {
+    // window.scrollTo({
+    //     top: document.documentElement.scrollHeight,
+    //     behavior: 'smooth' // Optional: for smooth scrolling
+    // });
+    historyDisplay.scrollTop = historyDisplay.scrollHeight;
+}
+// scrollDown();
+
 export function displayRestoredHistory() {
     for (let index = 0; index < history.length - 1; index++) {
         displayHistoryItem(index);
     }
+
+    scrollDown();
 }
 
 export function getCurrentEntry() {
@@ -47,15 +58,6 @@ export function setCurrentEntryExpression(value) {
 export function setCurrentEntryResult(value) {
     history[current].result = value;
 }
-
-
-function scrollDown() {
-    window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth' // Optional: for smooth scrolling
-    });
-}
-scrollDown();
 
 export function updateHistoryView() {
     if (doesInputIsEmpty()) return;

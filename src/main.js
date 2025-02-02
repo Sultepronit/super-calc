@@ -5,14 +5,14 @@ import { displayRestoredHistory, getCurrentEntry } from './historyHandlers';
 import { addTouchKeys } from './touchHandlers';
 
 function start() {
+    addTouchKeys();
+    
     displayRestoredHistory();
     addActionHandlers();
 
     const currentEnry = getCurrentEntry();
     setInputValue(currentEnry.expression);
     setOutputValue(currentEnry.result);
-
-    addTouchKeys();
 }
 
 start();
