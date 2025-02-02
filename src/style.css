@@ -7,7 +7,7 @@
 
 @media screen and (max-width: 700px) {
     * {
-        font-size: 5.5vw;
+        font-size: 6vw;
     }
 }
 
@@ -57,7 +57,7 @@ body {
     margin-top: auto;
     cursor: pointer;
     /* grid-column: span 2; */
-    height: 1em;
+    min-height: 1em;
 }
 
 .result span:hover {
@@ -100,16 +100,17 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     /* margin: 2px; */
     margin-inline: 4px;
+    user-select: none;
 }
 
 .keys p {
     /* border: 1px solid; */
     margin: 2px;
     /* padding-block: 0.2em; */
-    padding: 0.3em 0 0.2em;
+    padding: 0.4em 0 0.3em;
     background-color: aliceblue;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     /* font-weight: bold; */
 }
 
