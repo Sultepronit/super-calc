@@ -1,29 +1,31 @@
 export const input = document.getElementById('input');
 export const output = document.getElementById('output');
 
-document.insertValue = (value) => {
-    if (!value) return;
-    console.log(value);
+// input.addEventListener.key
 
-    value = value.replaceAll(',', '');
+// document.insertValue = (value) => {
+//     if (!value) return;
+//     console.log(value);
 
-    let start = input.selectionStart;
-    const end = input.selectionEnd;
+//     value = value.replaceAll(',', '');
 
-    if (value === '⌫') {
-        value = '';
-        start = start === end ? (start - 1 >= 0 ? start - 1 : 0) : start;
-    }
+//     let start = input.selectionStart;
+//     const end = input.selectionEnd;
 
-    console.log(start, end, value);
-    console.log(start + value.length)
+//     if (value === '⌫') {
+//         value = '';
+//         start = start === end ? (start - 1 >= 0 ? start - 1 : 0) : start;
+//     }
 
-    input.value = input.value.slice(0, start) + value + input.value.slice(end);
-    input.selectionStart = input.selectionEnd = start + value.length;
-    input.focus();
+//     console.log(start, end, value);
+//     console.log(start + value.length)
 
-    input.dispatchEvent(new Event('input'));
-};
+//     input.value = input.value.slice(0, start) + value + input.value.slice(end);
+//     input.selectionStart = input.selectionEnd = start + value.length;
+//     input.focus();
+
+//     input.dispatchEvent(new Event('input'));
+// };
 
 export function focusInput() {
     input.focus();

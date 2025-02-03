@@ -2,6 +2,43 @@ import { calculate, formatCommon, formatExp } from "./calcHandlers";
 import { getCurrentEntry, navigateHistory, saveHistory, setCurrentEntryExpression, setCurrentEntryResult, updateHistoryView } from "./historyHandlers";
 import { focusInput, input, output, setInputValue, setOutputValue } from "./inputOutputHandlers";
 
+function insertValue(value) {
+    if (!value) return;
+    value = value.replaceAll(',', '');
+
+    let start = input.selectionStart;
+    if (value === '⌫') {
+        value = '';
+        start = start === input.selectionEnd ? (start - 1 >= 0 ? start - 1 : 0) : start;
+    }
+
+    input.setRangeText(value, start, input.selectionEnd, 'end');
+    focusInput();
+    input.dispatchEvent(new Event('input'));
+}
+
+function keyHandlers(e) {
+    // console.log(e.key);
+    // console.log(e);
+    if(e.key === 'Enter') {
+        updateHistoryView();
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        navigateHistory(-1);
+    } else if (e.key === 'ArrowDown') {
+        navigateHistory(1);
+    } else if (e.key === 'Escape') {
+        navigateHistory(0, -1);
+    } else if (e.code === 'NumpadDecimal' && e.key === ",") {
+        e.preventDefault();
+        input.setRangeText('.', input.selectionStart, input.selectionEnd, 'end');
+    } else if (e.code === 'KeyC' && e.ctrlKey) {
+        return;
+    }
+
+    focusInput();
+}
+
 function updateOutput(value) {
     value = value.replaceAll('-', '–');
     setCurrentEntryResult(value);
@@ -10,20 +47,17 @@ function updateOutput(value) {
 }
 
 export default function addActionHandlers() {
-    document.body.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter') {
-            updateHistoryView();
-        } else if (e.key === 'ArrowUp') {
-            navigateHistory(-1);
-        } else if (e.key === 'ArrowDown') {
-            navigateHistory(1);
-        } else if (e.key === 'Escape') {
-            navigateHistory(0, -1);
-        } else if (e.code === 'KeyC' && e.ctrlKey) {
-            return;
-        }
+    document.body.addEventListener('keydown', keyHandlers);
 
-        focusInput();
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('clickable-result')) {
+            insertValue(e.target.innerText);
+        } else if (e.target.classList.contains('tap-key')) {
+            insertValue(e.target.innerText);
+        } else if (e.target.closest('.history-item')) {
+            const index = e.target.closest('.history-item').id.replace('record-', '')
+            navigateHistory(0, index);
+        }
     });
 
     input.addEventListener('input', () => {

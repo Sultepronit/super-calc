@@ -2,10 +2,10 @@ import { doesInputIsEmpty, setInputValue, setOutputValue } from "./inputOutputHa
 
 const historyDisplay = document.getElementById('history');
 
-document.selectEntry = (e, index) => {
-    if (e.target.classList.contains('clickable-result')) return;
-    navigateHistory(0, index);
-}
+// document.selectEntry = (e, index) => {
+//     if (e.target.classList.contains('clickable-result')) return;
+//     navigateHistory(0, index);
+// }
 
 const history = JSON.parse(localStorage.getItem('calcHistory')) || [{ expression: '', result: 0 }];
 let current = history.length - 1;
@@ -14,18 +14,20 @@ export function saveHistory() {
     localStorage.setItem('calcHistory', JSON.stringify(history));
 }
 
+// <span class="clickable-result" onclick="insertValue('${history[index].result}')">
 function prepareHistoryItemContent(index) {
     return `<p class="expression">${history[index].expression}</p>
         <p class="result">
-            <span class="clickable-result" onclick="insertValue('${history[index].result}')">
+            <span class="clickable-result">
                 ${history[index].result}
             </snap>
         </p>`;
 }
 
+// <li class="history-item" id="record-${index}" onclick="selectEntry(event, ${index})">
 function displayHistoryItem(index) {
     historyDisplay.innerHTML += `
-    <li class="history-item" id="record-${index}" onclick="selectEntry(event, ${index})">
+    <li class="history-item" id="record-${index}">
         ${prepareHistoryItemContent(index)}
     </li>`;
 }

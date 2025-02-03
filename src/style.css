@@ -54,7 +54,7 @@ body {
     min-height: 1em;
 }
 
-.result span:hover {
+.clickable-result:hover {
     text-decoration: underline;
     text-decoration-thickness: 2px;
 }

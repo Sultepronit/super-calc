@@ -45,18 +45,19 @@ function isTouchscreen() {
     );
 }
 
+function addKeysBlock(element, list) {
+    element.innerHTML = list.map(key => {
+        return key.action ? `<p onclick="${key.action}">${key.key}</p>`
+            // : `<p onclick="insertValue('${key.key}')">${key.key}</p>`;
+            : `<p class="tap-key">${key.key}</p>`;
+    }).join('');
+}
+
 export function addTouchKeys() {
     if (!isTouchscreen()) return;
 
-    document.getElementById('keys-1').innerHTML = keys1.map(key => {
-        return key.action ? `<p onclick="${key.action}">${key.key}</p>`
-            : `<p onclick="insertValue('${key.key}')">${key.key}</p>`;
-    }).join('');
-
-    keys2element.innerHTML = keys2.map(key => {
-        return key.action ? `<p onclick="${key.action}">${key.key}</p>`
-            : `<p onclick="insertValue('${key.key}')">${key.key}</p>`;
-    }).join('');
+    addKeysBlock(document.getElementById('keys-1'), keys1);
+    addKeysBlock(document.getElementById('keys-2'), keys2);
 
     input.inputMode = "none";
 }
