@@ -3,14 +3,14 @@ import { input } from "./inputOutputHandlers";
 
 const keys2element = document.getElementById('keys-2');
 
-document.updateHistory = updateHistoryView;
+// document.updateHistory = updateHistoryView;
 
-document.goToCurrent = () => {
-    navigateHistory(0, -1);
-    input.focus();
-};
+// document.goToCurrent = () => {
+//     navigateHistory(0, -1);
+//     input.focus();
+// };
 
-document.toggleInputMode = () => {
+export function toggleInputMode() {
     if (input.inputMode === "none") {
         input.inputMode = "text";
         input.focus();
@@ -23,18 +23,16 @@ document.toggleInputMode = () => {
     }
 };
 
-console.log( document.body);
-console.log( document.body.style);
 
 const keys1 = [
-    { key: '^' }, { key: '√', action: "insertValue('√(')" }, { key: 'π' }, { key: '↓↓↓', action: 'goToCurrent()' }, { key: '⌨', action: 'toggleInputMode()' }
+    { key: '^' }, { key: '√', action: "inserSqrt" }, { key: 'π' }, { key: '↓↓↓', action: 'goToCurrent' }, { key: '⌨', action: 'toggleInputMode' }
 ];
 
 const keys2 = [
     { key: 7 }, { key: 8 }, { key: 9 }, { key: '+' }, { key: '(' },
     { key: 4 }, { key: 5 }, { key: 6 }, { key: '–' }, { key: ')' },
     { key: 1 }, { key: 2 }, { key: 3 }, { key: '×' }, { key: '⌫' },
-    { key: 0 }, { key: '.' }, { key: 'e' }, { key: '÷' }, { key: '↲', action: 'updateHistory()' },
+    { key: 0 }, { key: '.' }, { key: 'e' }, { key: '÷' }, { key: '↲', action: 'updateHistoryView' },
 ];
 
 function isTouchscreen() {
@@ -47,7 +45,8 @@ function isTouchscreen() {
 
 function addKeysBlock(element, list) {
     element.innerHTML = list.map(key => {
-        return key.action ? `<p onclick="${key.action}">${key.key}</p>`
+        // return key.action ? `<p onclick="${key.action}">${key.key}</p>`
+        return key.action ? `<p data-action="${key.action}">${key.key}</p>`
             // : `<p onclick="insertValue('${key.key}')">${key.key}</p>`;
             : `<p class="tap-key">${key.key}</p>`;
     }).join('');

@@ -1,6 +1,7 @@
 import { calculate, formatCommon, formatExp } from "./calcHandlers";
 import { getCurrentEntry, navigateHistory, saveHistory, setCurrentEntryExpression, setCurrentEntryResult, updateHistoryView } from "./historyHandlers";
 import { focusInput, input, output, setInputValue, setOutputValue } from "./inputOutputHandlers";
+import { toggleInputMode } from "./touchHandlers";
 
 function insertValue(value) {
     if (!value) return;
@@ -52,11 +53,22 @@ export default function addActionHandlers() {
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('clickable-result')) {
             insertValue(e.target.innerText);
-        } else if (e.target.classList.contains('tap-key')) {
-            insertValue(e.target.innerText);
         } else if (e.target.closest('.history-item')) {
             const index = e.target.closest('.history-item').id.replace('record-', '')
             navigateHistory(0, index);
+        } else if (e.target.classList.contains('tap-key')) {
+            insertValue(e.target.innerText);
+        } else if (e.target.dataset.action) {
+            console.log(e.target.dataset.action);
+            if (e.target.dataset.action === 'updateHistoryView') {
+                updateHistoryView();
+            } else if(e.target.dataset.action === 'inserSqrt') {
+                insertValue('√(');
+            } else if(e.target.dataset.action === 'goToCurrent') {
+                navigateHistory(0, -1);
+            } else if(e.target.dataset.action === 'toggleInputMode') {
+                toggleInputMode();
+            }
         }
     });
 
