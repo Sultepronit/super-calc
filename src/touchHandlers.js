@@ -1,14 +1,6 @@
-import { navigateHistory, updateHistoryView } from "./historyHandlers";
 import { input } from "./inputOutputHandlers";
 
 const keys2element = document.getElementById('keys-2');
-
-// document.updateHistory = updateHistoryView;
-
-// document.goToCurrent = () => {
-//     navigateHistory(0, -1);
-//     input.focus();
-// };
 
 export function toggleInputMode() {
     if (input.inputMode === "none") {
@@ -31,7 +23,7 @@ const keys1 = [
 const keys2 = [
     { key: 7 }, { key: 8 }, { key: 9 }, { key: '+' }, { key: '(' },
     { key: 4 }, { key: 5 }, { key: 6 }, { key: '–' }, { key: ')' },
-    { key: 1 }, { key: 2 }, { key: 3 }, { key: '×' }, { key: '⌫' },
+    { key: 1 }, { key: 2 }, { key: 3 }, { key: '×' }, { key: '⌫', action: 'backspace' },
     { key: 0 }, { key: '.' }, { key: 'e' }, { key: '÷' }, { key: '↲', action: 'updateHistoryView' },
 ];
 
@@ -45,9 +37,7 @@ function isTouchscreen() {
 
 function addKeysBlock(element, list) {
     element.innerHTML = list.map(key => {
-        // return key.action ? `<p onclick="${key.action}">${key.key}</p>`
         return key.action ? `<p data-action="${key.action}">${key.key}</p>`
-            // : `<p onclick="insertValue('${key.key}')">${key.key}</p>`;
             : `<p class="tap-key">${key.key}</p>`;
     }).join('');
 }
